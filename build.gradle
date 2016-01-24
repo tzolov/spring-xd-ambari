@@ -40,6 +40,13 @@ task phd30Rpm(type: Rpm) {
 	}
 }
 
+task phd33Rpm(type: Rpm) {
+        packageName = 'spring-xd-plugin-phd33'
+        from('src/main/resources/services') {
+                into '/var/lib/ambari-server/resources/stacks/PHD/3.3/services'
+        }
+}
+
 task hdp22Rpm(type: Rpm) {
 	packageName = 'spring-xd-plugin-hdp'
 	from('src/main/resources/services') {
@@ -48,6 +55,6 @@ task hdp22Rpm(type: Rpm) {
 }
 
 task dist {
-	dependsOn phd30Rpm, hdp22Rpm
+	dependsOn phd30Rpm, phd33Rpm, hdp22Rpm
 }
 
